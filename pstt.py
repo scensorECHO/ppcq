@@ -24,7 +24,8 @@ with open(infofile,'w') as info:
 	for pc in pclist:
 		try:
 			log.append(subprocess.check_output([psinfo,"\\\\"+pc]))
+			log.append(subprocess.check_output([pslogd,"\\\\"+pc]))
 		except:
-			print("Stupid calledprocesserrors")
+			log.append("PC:"+pc+" is not available on the network\n")
 	for line in log:
-		info.write("%s\n" % line)
+		info.write("%s" % line)
